@@ -39,7 +39,7 @@ void playGame() {
     int attempts = 0; // The number of attempts to guess random number
     bool guessedCorrectly = false; // Bool to check loop until guess matches random number
 
-    displayInstructions(); // Calls function to introduce game
+    displayInstructions(); // Calls void function to introduce game
 
     while (!guessedCorrectly) {
         int guess = getValidatedGuess(); // Calls function to get a valid guess
