@@ -39,10 +39,10 @@ void playGame() {
     int attempts = 0; // The number of attempts to guess random number
     bool guessedCorrectly = false; // Bool to check loop until guess matches random number
 
-    displayInstructions();
+    displayInstructions(); // Calls function to introduce game
 
     while (!guessedCorrectly) {
-        int guess = getValidatedGuess();
+        int guess = getValidatedGuess(); // Calls function to get a valid guess
         attempts++; 
 
         if (guess > randomNumber) {
@@ -62,7 +62,7 @@ int main() {
     char playAgain;
 
     do {
-        playGame();
+        playGame(); // Calls void function to play game
 
         // Ask the player if they want to play again
         cout << "Do you want to play again? (y/n): ";
