@@ -30,6 +30,10 @@ This is a simple number guessing game where the player tries to guess a randomly
 ## Initial Errors 
 
 ### Issue 1: Insufficient Documentiation
+
+- Without proper documentation, a programmer that has not seen this code will have trouble deciphering each variable.
+
+ **Code Snippet:**
 ```cpp
 //No documentation
 int main() {
@@ -45,7 +49,7 @@ int main() {
 
 - Directly calling main from within itself is generally considered a very bad programming practice as it can easily cause infinite loops and crash the program due to stack overflow
 
-  **Code Snippet:**
+**Code Snippet:**
 ```cpp// Ask if the player wants to play again
     cout << "Do you want to play again? (y/n): ";
     cin >> playAgain;
