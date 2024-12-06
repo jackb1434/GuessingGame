@@ -31,7 +31,7 @@ This is a simple number guessing game where the player tries to guess a randomly
    - Upon winning a game, the program will congratulate the player with a random winning message.
 
 7. **Score System**:
-   - The score system will take the max amount of paints a player can win (250) and divide it by the amount of attempts it took the player to guess.
+   - The score system will take the max amount of points a player can win (250) and divide it by the amount of attempts it took the player to guess.
 
 
 ## Initial Errors 
@@ -101,6 +101,14 @@ while (!guessedCorrectly) {
 
    - Input validation was added to ensure the player can only input integers between 1 and 100, including some library functions from `<limits>` to complete the validation. If an invalid input is entered, the program will prompt the player to re-enter the guess.
 
+3. **Global Score and Point System**
+
+   - Created a global score variable and point system. The score system will take the max amount of points a player can win (250) and divide it by the amount of attempts it took the player to guess, points are totaled after play is done.
+
+4. **Randomized Winning Message**
+
+   - Upon winning a game, the program will congratulate the player including the library function <vector> to create a random winning message from an array of winning messages.
+   
 ### Refactoring
 
 
@@ -205,15 +213,65 @@ int main() {
 }
 ```
 
-6. **Library function added**
+6. **Library functions added and Global Variable Initialized**
 
 ```cpp
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <limits> // For library functions like numeric_limits
-#include <vector>
+#include <limits> // For library functions
+#include <vector>// For vector function
+using namespace std;
+
+int globalScore; // global variable for the score
+
 ```
+
+7. **Random winning message**
+
+```cpp
+// Returns a random winning message to the player
+string randomWinMessage(){
+    srand(time(0));
+
+    // random message enum
+    vector<string> messages = {
+        "Nice!",
+        "Good Job!",
+        "Awesome!",
+        "Super!",
+        "You rock!",
+        "Congratulations!"
+    };
+
+    // generates random number based on index size
+    int randomMessageIndex = rand() % messages.size();
+
+    return messages[randomMessageIndex];
+}
+```
+
+8. **Point System using Global Variable**
+   
+```cpp
+ // Point system: 250 / total attempts
+int pointSystem(int attempts) {
+    int maxPoints = 250;
+    int pointsToAdd = maxPoints / attempts;
+
+    globalScore = globalScore + pointsToAdd;
+
+    return pointsToAdd;
+}
+```
+9. **Function to return total score added up in Global Variable**
+```cpp
+// Returns total score
+int getTotalScore(){
+    return globalScore;
+}
+```
+
 ## Known Issues
 
    - Potential Screen Clear Improvement: The system("cls") function works on Windows but may not function as expected on other operating systems. A cross-platform solution for clearing the screen could be implemented in future versions.
