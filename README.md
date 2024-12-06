@@ -27,6 +27,13 @@ This is a simple number guessing game where the player tries to guess a randomly
 5. **Replay Option**:
    - After a successful guess, the player is asked whether they want to play again. If yes, the game restarts.
 
+6. **Random Win Message**:
+   - Upon winning a game, the program will congratulate the player with a random winning message.
+
+7. **Score System**:
+   - The score system will take the max amount of paints a player can win (250) and divide it by the amount of attempts it took the player to guess.
+
+
 ## Initial Errors 
 
 ### Issue 1: Insufficient Documentiation
@@ -205,6 +212,7 @@ int main() {
 #include <cstdlib>
 #include <ctime>
 #include <limits> // For library functions like numeric_limits
+#include <vector>
 ```
 ## Known Issues
 

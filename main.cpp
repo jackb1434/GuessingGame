@@ -2,13 +2,51 @@
 #include <cstdlib>
 #include <ctime>
 #include <limits> // For library functions
+#include <vector>
 
 using namespace std;
+
+int globalScore; // global variable for the score
 
 // Function to display instructions to the player
 void displayInstructions() {
     cout << "Welcome to the Number Guessing Game!" << endl;
     cout << "Try to guess the number from 1 to 100." << endl;
+}
+
+// returns a random winning message to the player
+string randomWinMessage(){
+    srand(time(0));
+
+    // random message enum
+    vector<string> messages = {
+        "Nice!",
+        "Good Job!",
+        "Awesome!",
+        "Super!",
+        "You rock!",
+        "Congratulations!"
+    };
+
+    // generates random number based on index size
+    int randomMessageIndex = rand() % messages.size();
+
+    return messages[randomMessageIndex];
+}
+
+// returns total score
+int getTotalScore(){
+    return globalScore;
+}
+
+// point system: 250 / total attempts
+int pointSystem(int attempts) {
+    int maxPoints = 250;
+    int pointsToAdd = maxPoints / attempts;
+
+    globalScore = globalScore + pointsToAdd;
+
+    return pointsToAdd;
 }
 
 // Function to generate a random number between 1 and 100
@@ -50,7 +88,9 @@ void playGame() {
         } else if (guess < randomNumber) {
             cout << "Too low! Try again." << endl;
         } else {
-            cout << "Congratulations! You guessed the correct number in " << attempts << " attempts." << endl;
+            cout << randomWinMessage() << " You guessed the correct number in " << attempts << " attempts." << endl;
+            cout << "You won " << pointSystem(attempts) << " points!" << endl;
+            cout << "Total score: " << getTotalScore() << endl;
             guessedCorrectly = true;
         }
     }
@@ -59,6 +99,7 @@ void playGame() {
 // Main function
 int main() {
     srand(static_cast<unsigned int>(time(0))); // Seed for random number generation
+    int totalPoints = 0;
     char playAgain;
 
     do {
@@ -70,6 +111,7 @@ int main() {
         system("cls"); // Clears the screen
     } while (playAgain == 'y' || playAgain == 'Y');
 
+    cout << "Final Score: " << getTotalScore() << " points." << endl;
     cout << "Thank you for playing!" << endl;
     return 0;
 }
